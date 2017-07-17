@@ -18,7 +18,7 @@
   margin: -400px 0 0 -400px;">"></canvas>
     	<script>
 
-    		var speed = 50;
+    		var speed = 500;
 
 
     		var Vertex = function(x, y, z) {
@@ -46,8 +46,6 @@
     		    new Vertex(center.x - d, center.y + d, center.z - d),
     		    new Vertex(center.x - d, center.y + d, center.z + d)
     		    ];
-
-
     		};
 
     		function project(M) {
@@ -105,7 +103,7 @@
     		    	{
     		    		for(var y = -10; y <= 10; y++)
     		    		{
-    		    			objects.push(new Cube(new Vertex(x * 50000, 5000, y * 50000), 5000));
+    		    			objects.push(new Cube(new Vertex(x * 5000, 5000, y * 5000), 5000));
     		    		}
     		    	}
 
@@ -113,7 +111,7 @@
     		    	{
     		    		for(var y = -10; y <= 10; y++)
     		    		{
-    		    			objects.push(new Cube(new Vertex(x * 50000, 6000, y * 50000), 5000));
+    		    			objects.push(new Cube(new Vertex(x * 5000, 6000, y * 5000), 5000));
     		    		}
     		    	}
 
@@ -121,7 +119,7 @@
     		    	{
     		    		for(var y = -10; y <= 10; y++)
     		    		{
-    		    			objects.push(new Cube(new Vertex(x * 50000, 7000, y * 50000), 5000));
+    		    			objects.push(new Cube(new Vertex(x * 5000, 7000, y * 5000), 5000));
     		    		}
     		    	}
 
@@ -129,7 +127,23 @@
     		    	{
     		    		for(var y = -10; y <= 10; y++)
     		    		{
-    		    			objects.push(new Cube(new Vertex(x * 50000, 8000, y * 50000), 5000));
+    		    			//objects.push(new Cube(new Vertex(x * 5000, 8000, y * 5000), 5000));
+    		    		}
+    		    	}
+
+    		    	for(var x = -10; x <= 10; x++)
+    		    	{
+    		    		for(var y = -10; y <= 10; y++)
+    		    		{
+    		    			//objects.push(new Cube(new Vertex(x * 5000, 9000, y * 5000), 5000));
+    		    		}
+    		    	}
+
+    		    	for(var x = -10; x <= 10; x++)
+    		    	{
+    		    		for(var y = -10; y <= 10; y++)
+    		    		{
+    		    			//objects.push(new Cube(new Vertex(x * 5000, 10000, y * 5000), 5000));
     		    		}
     		    	}
 
@@ -234,7 +248,7 @@
 
     		    		for (var i = 0; i < objects.length; ++i)
     		    		{
-    		    			for (var j = 0; j < 8; ++j)
+    		    			for (var j = 0; j < objects[i].vertices.length; ++j)
     		    			{	
 
     		    				rotate(objects[i].vertices[j], cube_center, theta, phi);
@@ -281,12 +295,12 @@
     		      	   if(38 in keysDown){
     		      	   	for (var i = 0; i < objects.length; ++i) 
     		      	   	{
-    		      	   		for (var j = 0; j < 8; ++j) 
+    		      	   		for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	   		{
-    		      	   			objects[i].vertices[j].y -= 50;
+    		      	   			objects[i].vertices[j].y -= speed;
     		      	   		}
     		      	   	}
-    		      	   	cube_center.y -= 50;
+    		      	   	cube_center.y -= speed;
     		      	   	render(objects, ctx, dx, dy);
     		      	   }
 
@@ -294,7 +308,7 @@
     		      	   if(40 in keysDown){
     		      	   	for (var i = 0; i < objects.length; ++i) 
     		      	   	{
-    		      	   		for (var j = 0; j < 8; ++j) 
+    		      	   		for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	   		{
     		      	   			objects[i].vertices[j].y += speed;
     		      	   		}
@@ -308,7 +322,7 @@
 
     		      	   	for (var i = 0; i < objects.length; ++i) 
     		      	   	{
-    		      	   		for (var j = 0; j < 8; ++j) 
+    		      	   		for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	   		{
     		      	   			objects[i].vertices[j].x += speed;
     		      	   		}
@@ -320,7 +334,7 @@
     		      	   if(39 in keysDown){ 
     		      	   	for (var i = 0; i < objects.length; ++i) 
     		      	   	{
-    		      	   		for (var j = 0; j < 8; ++j) 
+    		      	   		for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	   		{
     		      	   			objects[i].vertices[j].x -= speed;
 
@@ -342,12 +356,12 @@
     		      	    {
     		      	    	for (var i = 0; i < objects.length; ++i) 
     		      	    	{
-    		      	    		for (var j = 0; j < 8; ++j) 
+    		      	    		for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	    		{
-    		      	    			objects[i].vertices[j].z -= 50;
+    		      	    			objects[i].vertices[j].z -= speed;
     		      	    		}
     		      	    	}
-    		      	    	cube_center.z -= 50;
+    		      	    	cube_center.z -= speed;
     		      	    	render(objects, ctx, dx, dy);
     		      	    }
     		      	    else
@@ -355,12 +369,12 @@
     		      	    	{
     		      	    		for (var i = 0; i < objects.length; ++i) 
     		      	    		{
-    		      	    			for (var j = 0; j < 8; ++j) 
+    		      	    			for (var j = 0; j < objects[i].vertices.length; ++j) 
     		      	    			{
-    		      	    				objects[i].vertices[j].z += 50;
+    		      	    				objects[i].vertices[j].z += speed;
     		      	    			}
     		      	    		}
-    		      	    		cube_center.z += 50;
+    		      	    		cube_center.z += speed;
     		      	    		render(objects, ctx, dx, dy);
     		      	    	}
     		      	    }
@@ -384,7 +398,7 @@
     		   function autorotate() {
     		   	for (var i = 0; i < objects.length; ++i)
     		   	{
-    		   		for (var j = 0; j < 8; ++j)
+    		   		for (var j = 0; j < objects[i].vertices.length; ++j)
     		   		{
     		    			//rotateX(objects[i].vertices[j], cube_center, -Math.PI / 720, Math.PI / 720);
     		    		}
