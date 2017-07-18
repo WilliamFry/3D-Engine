@@ -164,7 +164,7 @@
                                 ctx.beginPath();
                                 ctx.arc(P.x + dx,-P.y + dy,1,0,2*Math.PI);
                                 ctx.stroke();
-                                ctx.fillStyle = 'rgba(' + color2 + ',100,100,0.6s)';
+                                ctx.fillStyle = 'rgba(' + color2 + ',100,100,0.3)';
                                 //ctx.fillStyle = 'rgba(255,255,255,0.5)';
                                 ctx.fill();
                             }
@@ -198,7 +198,7 @@
                 var cube_center = new Vertex(0, 500, 0);
                 var cube = new Cube(cube_center, dy);
                 var objects = [];
-                var cudesize = 40;
+                var cudesize = 30;
 
                 function getRndInteger(min, max) {
                   return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -884,17 +884,43 @@
                     {
                         for (var j = 0; j < Particles[i].vertices.length; ++j)
                         {   
-                            var p = Particles[i].vertices[j];
-
-                            //rotateY(p, rot);
+                            var ran1 = getRndInteger(1,20);
+                            if(ran1 == 1)
+                            {
+                                Particles[i].vertices[j].x -= 0.5;
+                            }
+                            if(ran1 == 2)
+                            {
+                                Particles[i].vertices[j].y -= 0.5;
+                            }
+                            if(ran1 == 3)
+                            {
+                                Particles[i].vertices[j].z -= 0.5;
+                            }
+                            if(ran1 == 4)
+                            {
+                                Particles[i].vertices[j].x += 0.5;
+                            }
+                            if(ran1 == 5)
+                            {
+                                Particles[i].vertices[j].y += 0.5;
+                            }
+                            if(ran1 == 6)
+                            {
+                                Particles[i].vertices[j].z += 0.5;
+                            }
+                            
                         }
                     }
+
+                    //cube_center.x -= speed;
+                    render(objects, ctx, dx, dy);
                     rot = 0;
                     render(objects, ctx, dx, dy);
 
-                    autorotate_timeout = setTimeout(autorotate, 30);
+                    autorotate_timeout = setTimeout(autorotate, 10);
                 }
-                autorotate_timeout = setTimeout(autorotate, 2000);
+                autorotate_timeout = setTimeout(autorotate, 0);
                 setImage();
             })();
 
