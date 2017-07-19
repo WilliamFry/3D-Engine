@@ -198,7 +198,7 @@
                 var cube_center = new Vertex(0, 500, 0);
                 var cube = new Cube(cube_center, dy);
                 var objects = [];
-                var cudesize = 30;
+                var cudesize = 40;
 
                 function getRndInteger(min, max) {
                   return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -238,12 +238,14 @@
                       }
                   }
 
+                  var hi = 0;
 
                   for(var x = -10; x <= 10; x++)
                   {
                      for(var y = -10; y <= 10; y++)
                      {
-                        objects.push(new Cube(new Vertex(y * 50, x * 50, -100), 50));
+                        objects.push(new Cube(new Vertex(y * 50, x * 50, -100 + hi), 50));
+                        //hi += 1;
                     }
                 }
 
@@ -884,6 +886,8 @@
                     {
                         for (var j = 0; j < Particles[i].vertices.length; ++j)
                         {   
+                            if(Particles[i].vertices[j].y > 90  &&  Particles[i].vertices[j].y < 1000)
+                            {
                             var ran1 = getRndInteger(1,20);
                             if(ran1 == 1)
                             {
@@ -910,7 +914,13 @@
                                 Particles[i].vertices[j].z += 0.5;
                             }
                             
+
+                            if(Particles[i].vertices[j].z > - 100)
+                            {
+                               // Particles[i].vertices[j].z -= 5;
+                            }
                         }
+                    }
                     }
 
                     //cube_center.x -= speed;
