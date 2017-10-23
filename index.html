@@ -306,11 +306,11 @@
                     }
                 }
 
-                for(var x = -cudesize; x <= cudesize; x++)
+                for(var x = 1; x <= 1; x++)
                 {
-                    for(var y = -cudesize; y <= cudesize; y++)
+                    for(var y = 1; y <= 1; y++)
                     {
-                            //objects.push(new Cube(new Vertex(x * 50, 250, y * 50), 50));
+                            objects.push(new Cube(new Vertex(x * 50, 250, y * 50), 50));
                         }
                     }
 
@@ -324,12 +324,12 @@
                         }
                     }
                     pos = 0
-                    for(var x = -cudesize; x <= cudesize; x++)
+                    for(var x = -10; x <= 10; x++)
                     {
-                        for(var y = -cudesize; y <= cudesize; y++)
+                        for(var y = -10; y <= 10; y++)
                         {
 
-                            Triangles.push(new Triangle(new Vertex(getRndInteger(-pos,1000), getRndInteger(-pos,1000), getRndInteger(-pos,1000)), 5));
+                            Triangles.push(new Triangle(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 8));
                             pos+= 10;
                         }
                     }
@@ -375,8 +375,7 @@
                    for(var x = -5; x <= 10; x++)
                    {
 
-
-                       // objects.push(new Cube(new Vertex(getRndInteger(-1000,1000), getRndInteger(10,1), getRndInteger(1,1)), 50));
+                        objects.push(new Cube(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 50));
 
                    }
 
@@ -1119,27 +1118,27 @@
                                 var ran1 = getRndInteger(1,20);
                                 if(ran1 == 1)
                                 {
-                                    Triangles[i].vertices[j].x -= 5;
+                                    Triangles[i].vertices[j].x -= 0.3;
                                 }
                                 if(ran1 == 2)
                                 {
-                                    Triangles[i].vertices[j].y -= 5;
+                                    Triangles[i].vertices[j].y -= 0.3;
                                 }
                                 if(ran1 == 3)
                                 {
-                                    Triangles[i].vertices[j].z -= 5;
+                                    Triangles[i].vertices[j].z -= 0.3;
                                 }
                                 if(ran1 == 4)
                                 {
-                                    Triangles[i].vertices[j].x += 5;
+                                    Triangles[i].vertices[j].x += 0.3;
                                 }
                                 if(ran1 == 5)
                                 {
-                                    Triangles[i].vertices[j].y += 5;
+                                    Triangles[i].vertices[j].y += 0.3;
                                 }
                                 if(ran1 == 6)
                                 {
-                                    Triangles[i].vertices[j].z += 5;
+                                    Triangles[i].vertices[j].z += 0.3;
                                 }
 
 
