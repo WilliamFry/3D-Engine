@@ -1,41 +1,63 @@
-<html>
+<html style="font-family:'Ubuntu', sans-serif;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>3D Cube</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+  <title>3D Cube</title>
 </head>
 
 <body style="background-color:black; overflow: hidden">
 
 
-    <canvas id="cnv" width="2000" height="2000" style="background-color:black; border:1px solid #ffffff;  position: absolute;
-    z-index: 15;
-    top: 50%;
-    left: 50%;
-    margin: -1000px 0 0 -1000px;
-    cursor1: none;">"></canvas>
-    <script>
 
-    var speed = 10;
+  <canvas id="cnv"
+  style="
+  background-color:black; 
+  width:100%;
+  height:100%; 
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  cursor1: none;
+  position: absolute;
+  margin: 0 auto;
+  z-index: -2;
+  ">
+</canvas>
 
-    var Vertex = function(x, y, z) {
-        this.x = parseFloat(x);
-        this.y = parseFloat(y);
-        this.z = parseFloat(z);
-    };
+<div style="padding:10px;margin:0px; width:100%; background-color: rgba(66, 238, 244,0.1); color: white;text-align:center;"> 
 
-    var Vertex2D = function(x, y) {
-        this.x = parseFloat(x);
-        this.y = parseFloat(y);
-    };
+<h1>Javascript 3D Engine</h1>
+<h3>By William Fry</h3>
 
-      function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) ) + min;
-    }
+<p>Controls: Arrow Keys, WASD, Shift(speed), Spacebar(show cube vertices)</p>
 
-    var Cube = function(center, side) {
+</div>
+
+<script>
+
+var speed = 10;
+
+var Vertex = function(x, y, z) {
+  this.x = parseFloat(x);
+  this.y = parseFloat(y);
+  this.z = parseFloat(z);
+};
+
+var Vertex2D = function(x, y) {
+  this.x = parseFloat(x);
+  this.y = parseFloat(y);
+};
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+var Cube = function(center, side) {
                 // Generate the vertices
                 var d = side / 2;
 
@@ -59,11 +81,11 @@
                 [this.vertices[7], this.vertices[0], this.vertices[3], this.vertices[4]],
                 [this.vertices[1], this.vertices[6], this.vertices[5], this.vertices[2]]
                 ];
-            };
+              };
 
-            var Triangles = [];
+              var Triangles = [];
 
-            var Triangle = function(center, side){
+              var Triangle = function(center, side){
                         // Generate the vertices
                         var d = side / 2;
 
@@ -78,12 +100,12 @@
                         this.faces = [
                         [this.vertices[0], this.vertices[1], this.vertices[2]]
                         ];
-                    };
+                      };
 
-                    var Particles = []
+                      var Particles = []
 
 
-                    var Particle = function(center, side) {
+                      var Particle = function(center, side) {
                         // Generate the vertices
                         var d = side / 2;
 
@@ -91,19 +113,19 @@
                         new Vertex(center.x - d, center.y - d, center.z + d),
                         ];
 
-                    };
+                      };
 
-                    function project(M) {
+                      function project(M) {
                 // Distance between the camera and the plane
                 var d = 500;
                 var r = d / M.y;
 
                 return new Vertex2D(r * M.x, r * M.z);
-            }
-            var color = 0;
-            var color2 = 255;
-            var faces = true;
-            function render(objects, ctx, dx, dy) {
+              }
+              var color = 0;
+              var color2 = 255;
+              var faces = true;
+              function render(objects, ctx, dx, dy) {
 
                 // Clear the previous frame
                 ctx.clearRect(0, 0, 2*dx, 2*dy);
@@ -114,7 +136,7 @@
                     for (var j = 0; j < Triangles[i].faces.length; ++j) {
                       if(Triangles[i].vertices[j].y > 300 && Triangles[i].vertices[j].y < 10000000)
                          //
-                     {
+                       {
 
                   // Current face
                   var face = Triangles[i].faces[0];
@@ -129,7 +151,7 @@
                   for (var k = 1; k < 3; ++k) {
                     P = project(face[k]);
                     ctx.lineTo(P.x + dx, -P.y + dy);
-                }
+                  }
 
                   // Close the path and draw the face
                   ctx.closePath();
@@ -145,16 +167,16 @@
                   {
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
                   }
-                          
-                          ctx.fill();
-                      }
-                      
-                      
-                  }
 
-                  color += 1;
+                  ctx.fill();
+                }
 
-                  color2 -= 1;
+
+              }
+
+              color += 1;
+
+              color2 -= 1;
             }
 
 
@@ -182,9 +204,9 @@
 
                        // For each face
                        for (var j = 0, n_faces = objects[i].faces.length; j < n_faces; ++j) {
-                           if(objects[i].vertices[j].y > 90 &&  objects[i].vertices[j].y < 10000)
+                         if(objects[i].vertices[j].y > 90 &&  objects[i].vertices[j].y < 10000)
                             //
-                        {
+                          {
                            // Current face
                            var face = objects[i].faces[j];
 
@@ -195,8 +217,8 @@
 
                            // Draw the other vertices
                            for (var k = 1, n_vertices = face.length; k < n_vertices; ++k) {
-                               P = project(face[k]);
-                               ctx.lineTo(P.x + dx, -P.y + dy);
+                             P = project(face[k]);
+                             ctx.lineTo(P.x + dx, -P.y + dy);
                            }
 
                            // Close the path and draw the face
@@ -208,69 +230,69 @@
                            //ctx.fillStyle = 'rgba(100, ' + color2 + ', ' + color + ', 0.3)';
                            ctx.fillStyle = 'rgba(' + color2 + ',100,100,0.3)';
                            ctx.fill();
+                         }
+
+
                        }
-                       
-                       
+
+                       color += 1;
+
+                       color2 -= 1;
+
+
+                     } 
                    }
-
-                   color += 1;
-
-                   color2 -= 1;
-
-
-               } 
-           }
-           else
-           {
+                   else
+                   {
                         // For each object
                         for (var i = 0, n_obj = objects.length; i < n_obj; ++i) {
                             // For each face
                             for (var j = 0, n_faces = objects[i].vertices.length; j < n_faces; ++j) {
 
-                                if(objects[i].vertices[j].y > 90  &&  objects[i].vertices[j].y < 2000)
-                                {
-                                    var P = project(objects[i].vertices[j]);
-                                    ctx.beginPath();
-                                    ctx.arc(P.x + dx,-P.y + dy,1,0,2*Math.PI);
-                                    ctx.stroke();
-                                    ctx.fillStyle = "green";
-                                    ctx.fill();
-                                }
+                              if(objects[i].vertices[j].y > 90  &&  objects[i].vertices[j].y < 2000)
+                              {
+                                var P = project(objects[i].vertices[j]);
+                                ctx.beginPath();
+                                ctx.arc(P.x + dx,-P.y + dy,1,0,2*Math.PI);
+                                ctx.stroke();
+                                ctx.fillStyle = "green";
+                                ctx.fill();
+                              }
                             }
+                          }
                         }
-                    }
-                    color = 0;
-                    color2 = 255;
+                        color = 0;
+                        color2 = 255;
 
                     // For each object
                     for (var i = 0, n_obj = Particles.length; i < n_obj; ++i) {
                         // For each face
                         for (var j = 0, n_faces = Particles[i].vertices.length; j < n_faces; ++j) {
 
-                            if(Particles[i].vertices[j].y > 90  &&  Particles[i].vertices[j].y < 1000)
-                            {
-                                var P = project(Particles[i].vertices[j]);
-                                ctx.beginPath();
-                                ctx.arc(P.x + dx,-P.y + dy,2,0,2*Math.PI);
+                          if(Particles[i].vertices[j].y > 90  &&  Particles[i].vertices[j].y < 1000)
+                          {
+                            var P = project(Particles[i].vertices[j]);
+                            ctx.beginPath();
+                            ctx.arc(P.x + dx,-P.y + dy,2,0,2*Math.PI);
                                 //ctx.stroke();
                                 ctx.fillStyle = 'rgba(' + color2 + ',100,100,0.3)';
                                 //ctx.fillStyle = 'rgba(255,255,255,0.5)';
                                 ctx.fill();
+                              }
+                              color += 1;
+
+                              color2 -= 1;
                             }
-                            color += 1;
-
-                            color2 -= 1;
+                          }
+                          color = 0;
+                          color2 = 255;
                         }
-                    }
-                    color = 0;
-                    color2 = 255;
-                }
 
 
 
 
 
-                (function() {
+                        (function() {
                 // Fix the canvas width and height
                 var canvas = document.getElementById('cnv');
                 canvas.width = canvas.offsetWidth;
@@ -291,11 +313,11 @@
 
                 function getRndInteger(min, max) {
                   return Math.floor(Math.random() * (max - min + 1) ) + min;
-              }
+                }
 
-              var pos = 0;
-              function CubeMaker()
-              {
+                var pos = 0;
+                function CubeMaker()
+                {
 
                   for(var x = -10; x <= 10; x++)
                   {
@@ -303,86 +325,86 @@
                    {
                         //objects.push(new Cube(new Vertex(y * 50, x * 50, -120), 50));
                         //hi += 1;
+                      }
                     }
-                }
 
-                for(var x = 1; x <= 1; x++)
-                {
-                    for(var y = 1; y <= 1; y++)
+                    for(var x = 1; x <= 1; x++)
                     {
-                            objects.push(new Cube(new Vertex(x * 50, 250, y * 50), 50));
-                        }
+                      for(var y = 1; y <= 1; y++)
+                      {
+                        objects.push(new Cube(new Vertex(x * 50, 250, y * 50), 50));
+                      }
                     }
 
                     for(var x = -cudesize; x <= cudesize; x++)
                     {
-                        for(var y = -cudesize; y <= cudesize; y++)
-                        {
+                      for(var y = -cudesize; y <= cudesize; y++)
+                      {
 
                             //Particles.push(new Particle(new Vertex(getRndInteger(-pos,1000), getRndInteger(-pos,1000), getRndInteger(-pos,1000)), 50));
                             //pos+= 10;
+                          }
                         }
-                    }
-                    pos = 0
-                    for(var x = -10; x <= 10; x++)
-                    {
-                        for(var y = -10; y <= 10; y++)
+                        pos = 0
+                        for(var x = -10; x <= 10; x++)
                         {
+                          for(var y = -10; y <= 10; y++)
+                          {
 
                             Triangles.push(new Triangle(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 8));
                             pos+= 10;
+                          }
                         }
-                    }
 
-                    for(var x = -cudesize; x <= cudesize; x++)
-                    {
+                        for(var x = -cudesize; x <= cudesize; x++)
+                        {
                             //Triangles.push(new Triangle(new Vertex(x,x, x,x, 100,100), 50));
-                    }
+                          }
 
-                    for(var x = -cudesize; x <= cudesize; x++)
-                    {
+                          for(var x = -cudesize; x <= cudesize; x++)
+                          {
+                            for(var y = -cudesize; y <= cudesize; y++)
+                            {
+                          //  Particles.push(new Particle(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 50));
+                        }
+                      }
+
+                      for(var x = -cudesize; x <= cudesize; x++)
+                      {
                         for(var y = -cudesize; y <= cudesize; y++)
                         {
-                          //  Particles.push(new Particle(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 50));
-                      }
-                  }
-
-                  for(var x = -cudesize; x <= cudesize; x++)
-                  {
-                    for(var y = -cudesize; y <= cudesize; y++)
-                    {
                             //objects.push(new Cube(new Vertex(-300, x * 50, y * 50), 50));
+                          }
                         }
+
+                        for(var x = -10; x <= 10; x++)
+                        {
+                          for(var y = -10; y <= 10; y++)
+                          {
+                          //  Particles.push(new Particle(new Vertex(x * 10,1000 , y * 10), 100));
+                        }
+                      }
+
+                      var hi = 0;
+
+
+
+                      for(var x = -100; x <= 100; x++)
+                      {
+                       //objects.push(new Cube(new Vertex(0, x * 50, -100), 50));
+                     }
+
+                     for(var x = -5; x <= 10; x++)
+                     {
+
+                      objects.push(new Cube(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 50));
+
                     }
 
-                    for(var x = -10; x <= 10; x++)
-                    {
-                        for(var y = -10; y <= 10; y++)
-                        {
-                          //  Particles.push(new Particle(new Vertex(x * 10,1000 , y * 10), 100));
-                      }
                   }
 
-                  var hi = 0;
 
-
-
-                for(var x = -100; x <= 100; x++)
-                {
-                       //objects.push(new Cube(new Vertex(0, x * 50, -100), 50));
-                   }
-
-                   for(var x = -5; x <= 10; x++)
-                   {
-
-                        objects.push(new Cube(new Vertex(getRndInteger(-1000,1000), getRndInteger(-1000,1000), getRndInteger(-1000,1000)), 50));
-
-                   }
-
-               }
-
-
-               CubeMaker();
+                  CubeMaker();
                 // First render
                 render(objects, ctx, dx, dy);
 
@@ -411,29 +433,29 @@
                     M.x = ct * x - st * cp * y + st * sp * z + center.x;
                     M.y = st * x + ct * cp * y - ct * sp * z + center.y;
                     M.z = sp * y + cp * z + center.z;
-                }
+                  }
 
-                var rotation = 0;
+                  var rotation = 0;
 
                 // Rotate a vertice
                 function rotateX(point, radians) {
-                    var y = point.y;
-                    point.y = (y * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
-                    point.z = (y * Math.sin(radians)) + (point.z * Math.cos(radians));
+                  var y = point.y;
+                  point.y = (y * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
+                  point.z = (y * Math.sin(radians)) + (point.z * Math.cos(radians));
                 }
 
                 // Utility method to rotate point by Y in a 3D space
                 function rotateY(point, radians) {
-                    var x = point.x;
-                    point.x = (x * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
-                    point.z = (x * Math.sin(radians)) + (point.z * Math.cos(radians));
+                  var x = point.x;
+                  point.x = (x * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
+                  point.z = (x * Math.sin(radians)) + (point.z * Math.cos(radians));
                 }
 
                 // Utility method to rotate point by Z in a 3D space
                 function rotateZ(point, radians) {
-                    var x = point.x;
-                    point.x = (x * Math.cos(radians)) + (point.y * Math.sin(radians) * -1.0);
-                    point.y = (x * Math.sin(radians)) + (point.y * Math.cos(radians));
+                  var x = point.x;
+                  point.x = (x * Math.cos(radians)) + (point.y * Math.sin(radians) * -1.0);
+                  point.y = (x * Math.sin(radians)) + (point.y * Math.cos(radians));
                 }
 
                 // Initialize the movement
@@ -442,648 +464,648 @@
                     mousedown = true;
                     mx = evt.clientX;
                     my = evt.clientY;
-                }
+                  }
 
-                mxnew = 400;
-                mynew = 400;
-                var moveleft = false;
+                  mxnew = 400;
+                  mynew = 400;
+                  var moveleft = false;
 
-                var moveright = false;
+                  var moveright = false;
 
-                function move(evt) {
+                  function move(evt) {
 
                     if (mousedown) {
 
-                        mx = evt.clientX;
-                        my = evt.clientY;
+                      mx = evt.clientX;
+                      my = evt.clientY;
 
-                        for (var i = 0; i < Triangles.length; ++i)
-                        {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {  
+                      for (var i = 0; i < Triangles.length; ++i)
+                      {
+                        for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                        {  
 
 
-                            }
                         }
+                      }
 
-                        if(mxnew > mx)
-                        {
-                            rotation -= Math.PI/90;
-                            for (var i = 0; i < objects.length; ++i)
-                            {
-                                for (var j = 0; j < objects[i].vertices.length; ++j)
-                                {
-                                    var p = objects[i].vertices[j];
-
-                                    rotateZ(p, rotation);
-
-                                }
-                            }
-
-                            for (var i = 0; i < Particles.length; ++i)
-                            {
-                                for (var j = 0; j < Particles[i].vertices.length; ++j)
-                                {
-                                    var p = Particles[i].vertices[j];
-
-                                    rotateZ(p, rotation);
-
-                                }
-                            }
-
-
-                            render(objects, ctx, dx, dy);
-
-                            rotation = 0;
-                        }
-
-                        if(mx < 1)
-                        {
-                            //moveleft = true;
-                        }
-                        else
-                        {
-                            //moveleft = false;
-                        }
-
-                        if(mx > 1500)
-                        {
-                            //moveright = true;
-                        }
-                        else
-                        {
-                            //moveright = false;
-                        }
-
-                        if(mxnew < mx)
-                        {
-                            rotation += Math.PI/90;
-                            for (var i = 0; i < objects.length; ++i)
-                            {
-                                for (var j = 0; j < objects[i].vertices.length; ++j)
-                                {
-                                    var p = objects[i].vertices[j];
-
-                                    rotateZ(p, rotation);
-
-                                }
-                            }
-
-                            for (var i = 0; i < Particles.length; ++i)
-                            {
-                                for (var j = 0; j < Particles[i].vertices.length; ++j)
-                                {
-                                    var p = Particles[i].vertices[j];
-
-                                    rotateZ(p, rotation);
-
-                                }
-                            }
-
-                            render(objects, ctx, dx, dy);
-
-                            rotation = 0;
-                        }
-
-                        mxnew = mx;
-                        
-
-                        if(mynew < my)
-                        {
-                            rotation += Math.PI/90;
-                            for (var i = 0; i < objects.length; ++i)
-                            {
-                                for (var j = 0; j < objects[i].vertices.length; ++j)
-                                {
-                                    var p = objects[i].vertices[j];
-
-                                    rotateX(p, rotation);
-
-                                }
-                            }
-                            for (var i = 0; i < Particles.length; ++i)
-                            {
-                                for (var j = 0; j < Particles[i].vertices.length; ++j)
-                                {
-                                    var p = Particles[i].vertices[j];
-
-                                    rotateX(p, rotation);
-
-                                }
-                            }
-
-                            render(objects, ctx, dx, dy);
-
-                            rotation = 0;
-                        }
-
-
-                        if(mynew > my)
-                        {
-                            rotation -= Math.PI/90;
-                            for (var i = 0; i < objects.length; ++i)
-                            {
-                                for (var j = 0; j < objects[i].vertices.length; ++j)
-                                {
-                                    var p = objects[i].vertices[j];
-
-                                    rotateX(p, rotation);
-
-                                }
-                            }
-
-                            for (var i = 0; i < Particles.length; ++i)
-                            {
-                                for (var j = 0; j < Particles[i].vertices.length; ++j)
-                                {
-                                    var p = Particles[i].vertices[j];
-
-                                    rotateX(p, rotation);
-
-                                }
-                            }
-
-                            render(objects, ctx, dx, dy);
-
-                            rotation = 0;
-                        }
-
-
-                        mxnew = mx;
-                        mynew = my;
-                    }
-
-
-                }
-
-                function move1(evt) {
-                    if (mousedown) {
-                        var theta = (evt.clientX - mx) * Math.PI / 360;
-                        var phi = (evt.clientY - my) * Math.PI / 180;
-
+                      if(mxnew > mx)
+                      {
+                        rotation -= Math.PI/90;
                         for (var i = 0; i < objects.length; ++i)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < objects[i].vertices.length; ++j)
+                          {
+                            var p = objects[i].vertices[j];
 
-                                rotate(objects[i].vertices[j], cube_center, theta, phi);
-                            }
+                            rotateZ(p, rotation);
+
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {
+                            var p = Particles[i].vertices[j];
+
+                            rotateZ(p, rotation);
+
+                          }
+                        }
+
+
+                        render(objects, ctx, dx, dy);
+
+                        rotation = 0;
+                      }
+
+                      if(mx < 1)
+                      {
+                            //moveleft = true;
+                          }
+                          else
+                          {
+                            //moveleft = false;
+                          }
+
+                          if(mx > 1500)
+                          {
+                            //moveright = true;
+                          }
+                          else
+                          {
+                            //moveright = false;
+                          }
+
+                          if(mxnew < mx)
+                          {
+                            rotation += Math.PI/90;
+                            for (var i = 0; i < objects.length; ++i)
+                            {
+                              for (var j = 0; j < objects[i].vertices.length; ++j)
+                              {
+                                var p = objects[i].vertices[j];
+
+                                rotateZ(p, rotation);
+
+                              }
+                            }
+
+                            for (var i = 0; i < Particles.length; ++i)
+                            {
+                              for (var j = 0; j < Particles[i].vertices.length; ++j)
+                              {
+                                var p = Particles[i].vertices[j];
+
+                                rotateZ(p, rotation);
+
+                              }
+                            }
+
+                            render(objects, ctx, dx, dy);
+
+                            rotation = 0;
+                          }
+
+                          mxnew = mx;
+
+
+                          if(mynew < my)
+                          {
+                            rotation += Math.PI/90;
+                            for (var i = 0; i < objects.length; ++i)
+                            {
+                              for (var j = 0; j < objects[i].vertices.length; ++j)
+                              {
+                                var p = objects[i].vertices[j];
+
+                                rotateX(p, rotation);
+
+                              }
+                            }
+                            for (var i = 0; i < Particles.length; ++i)
+                            {
+                              for (var j = 0; j < Particles[i].vertices.length; ++j)
+                              {
+                                var p = Particles[i].vertices[j];
+
+                                rotateX(p, rotation);
+
+                              }
+                            }
+
+                            render(objects, ctx, dx, dy);
+
+                            rotation = 0;
+                          }
+
+
+                          if(mynew > my)
+                          {
+                            rotation -= Math.PI/90;
+                            for (var i = 0; i < objects.length; ++i)
+                            {
+                              for (var j = 0; j < objects[i].vertices.length; ++j)
+                              {
+                                var p = objects[i].vertices[j];
+
+                                rotateX(p, rotation);
+
+                              }
+                            }
+
+                            for (var i = 0; i < Particles.length; ++i)
+                            {
+                              for (var j = 0; j < Particles[i].vertices.length; ++j)
+                              {
+                                var p = Particles[i].vertices[j];
+
+                                rotateX(p, rotation);
+
+                              }
+                            }
+
+                            render(objects, ctx, dx, dy);
+
+                            rotation = 0;
+                          }
+
+
+                          mxnew = mx;
+                          mynew = my;
+                        }
+
+
+                      }
+
+                      function move1(evt) {
+                        if (mousedown) {
+                          var theta = (evt.clientX - mx) * Math.PI / 360;
+                          var phi = (evt.clientY - my) * Math.PI / 180;
+
+                          for (var i = 0; i < objects.length; ++i)
+                          {
+                            for (var j = 0; j < objects[i].vertices.length; ++j)
+                            {   
+
+                              rotate(objects[i].vertices[j], cube_center, theta, phi);
+                            }
+                          }
+
+                          for (var i = 0; i < Particles.length; ++i)
+                          {
                             for (var j = 0; j < Particles[i].vertices.length; ++j)
                             {   
 
-                                rotate(Particles[i].vertices[j], cube_center, theta, phi);
+                              rotate(Particles[i].vertices[j], cube_center, theta, phi);
                             }
+                          }
+
+                          mx = evt.clientX;
+                          my = evt.clientY;
+
+                          render(objects, ctx, dx, dy);
                         }
-
-                        mx = evt.clientX;
-                        my = evt.clientY;
-
-                        render(objects, ctx, dx, dy);
-                    }
-                }
+                      }
 
 
-                function setImage(){
+                      function setImage(){
 
-                    var now = Date.now();
-                    var delta = now-then;
+                        var now = Date.now();
+                        var delta = now-then;
 
-                    update(delta/1000);
+                        update(delta/1000);
 
 
-                    then = now;
+                        then = now;
 
-                    if(moveleft == true)
-                    {
-
-                        rotation -= Math.PI/90;
-                        for (var i = 0; i < objects.length; ++i)
+                        if(moveleft == true)
                         {
+
+                          rotation -= Math.PI/90;
+                          for (var i = 0; i < objects.length; ++i)
+                          {
                             for (var j = 0; j < objects[i].vertices.length; ++j)
                             {
-                                var p = objects[i].vertices[j];
+                              var p = objects[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                              rotateZ(p, rotation);
 
                             }
+                          }
+
+
+                          render(objects, ctx, dx, dy);
+
+                          rotation = 0;
                         }
 
-
-                        render(objects, ctx, dx, dy);
-
-                        rotation = 0;
-                    }
-
-                    if(moveright == true)
-                    {
-
-                        rotation += Math.PI/90;
-                        for (var i = 0; i < objects.length; ++i)
+                        if(moveright == true)
                         {
+
+                          rotation += Math.PI/90;
+                          for (var i = 0; i < objects.length; ++i)
+                          {
                             for (var j = 0; j < objects[i].vertices.length; ++j)
                             {
-                                var p = objects[i].vertices[j];
+                              var p = objects[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                              rotateZ(p, rotation);
 
                             }
+                          }
+
+
+                          render(objects, ctx, dx, dy);
+
+                          rotation = 0;
                         }
 
+                        requestAnimationFrame(setImage);
+                      }
 
-                        render(objects, ctx, dx, dy);
+                      var then = 0;
 
-                        rotation = 0;
-                    }
+                      var w = window;
+                      requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
-                    requestAnimationFrame(setImage);
-                }
+                      var keysDown = {};
+                      addEventListener("keydown", function(e){
+                        keysDown[e.keyCode] = true;
+                        e.preventDefault();
+                      }, false);
+                      addEventListener("keyup", function(e){
+                        delete keysDown[e.keyCode];
+                        e.preventDefault();
+                      }, false);
 
-                var then = 0;
+                      function update(modifier){
 
-                var w = window;
-                requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-
-                var keysDown = {};
-                addEventListener("keydown", function(e){
-                  keysDown[e.keyCode] = true;
-                  e.preventDefault();
-              }, false);
-                addEventListener("keyup", function(e){
-                  delete keysDown[e.keyCode];
-                  e.preventDefault();
-              }, false);
-
-                function update(modifier){
-
-                    if(16 in keysDown){
-                        speed += 10;
-                    }
-                    else
-                    {
-                        speed = 10;
-                    }
+                        if(16 in keysDown){
+                          speed += 10;
+                        }
+                        else
+                        {
+                          speed = 10;
+                        }
 
                        //up
                        if(87 in keysDown){
                         for (var i = 0; i < objects.length; ++i) 
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j) 
-                            {
-                                objects[i].vertices[j].y -= speed;
-                            }
+                          for (var j = 0; j < objects[i].vertices.length; ++j) 
+                          {
+                            objects[i].vertices[j].y -= speed;
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
 
-                                Particles[i].vertices[j].y -= speed;
-                            }
+                            Particles[i].vertices[j].y -= speed;
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {   
 
-                                Triangles[i].vertices[j].y -= speed;
-                            }
+                            Triangles[i].vertices[j].y -= speed;
+                          }
                         }
 
                         //cube_center.y -= speed;
                         render(objects, ctx, dx, dy);
-                    }
+                      }
 
                        //down
                        if(83 in keysDown){
                         for (var i = 0; i < objects.length; ++i) 
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j) 
-                            {
-                                objects[i].vertices[j].y += speed;
-                            }
+                          for (var j = 0; j < objects[i].vertices.length; ++j) 
+                          {
+                            objects[i].vertices[j].y += speed;
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
 
-                                Particles[i].vertices[j].y += speed;
-                            }
+                            Particles[i].vertices[j].y += speed;
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {   
 
-                                Triangles[i].vertices[j].y += speed;
-                            }
+                            Triangles[i].vertices[j].y += speed;
+                          }
                         }
 
                         //cube_center.y += speed;
                         render(objects, ctx, dx, dy);
-                    }
+                      }
 
                        //left
                        if(65 in keysDown){
 
                         for (var i = 0; i < objects.length; ++i) 
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j) 
-                            {
-                                objects[i].vertices[j].x += speed;
-                            }
+                          for (var j = 0; j < objects[i].vertices.length; ++j) 
+                          {
+                            objects[i].vertices[j].x += speed;
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
 
-                                Particles[i].vertices[j].x += speed;
-                            }
+                            Particles[i].vertices[j].x += speed;
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {   
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {   
 
-                                Triangles[i].vertices[j].x += speed;
-                            }
+                            Triangles[i].vertices[j].x += speed;
+                          }
                         }
 
                         //cube_center.x += speed;
                         render(objects, ctx, dx, dy);
-                    }
+                      }
                        //right
                        if(68 in keysDown){ 
                         for (var i = 0; i < objects.length; ++i) 
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j) 
-                            {
-                                objects[i].vertices[j].x -= speed;
+                          for (var j = 0; j < objects[i].vertices.length; ++j) 
+                          {
+                            objects[i].vertices[j].x -= speed;
 
                                 //rotate(objects[i].vertices[j], cube_center, Math.PI / 90, -Math.PI / 90);
+                              }
                             }
-                        }
 
-                        for (var i = 0; i < Particles.length; ++i)
-                        {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
+                            for (var i = 0; i < Particles.length; ++i)
+                            {
+                              for (var j = 0; j < Particles[i].vertices.length; ++j)
+                              {   
 
                                 Particles[i].vertices[j].x -= speed;
+                              }
                             }
-                        }
 
-                        for (var i = 0; i < Triangles.length; ++i)
-                        {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {   
+                            for (var i = 0; i < Triangles.length; ++i)
+                            {
+                              for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                              {   
 
                                 Triangles[i].vertices[j].x -= speed;
+                              }
                             }
-                        }
 
                         //cube_center.x -= speed;
                         render(objects, ctx, dx, dy);
-                    } 
+                      } 
 
 
-                    if(39 in keysDown){ 
+                      if(39 in keysDown){ 
                         rotation += Math.PI/90;
                         for (var i = 0; i < objects.length; ++i)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {
-                                var p = objects[i].vertices[j];
+                          for (var j = 0; j < objects[i].vertices.length; ++j)
+                          {
+                            var p = objects[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                            rotateZ(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {
-                                var p = Triangles[i].vertices[j];
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {
+                            var p = Triangles[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                            rotateZ(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
-                                var p = Particles[i].vertices[j];
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
+                            var p = Particles[i].vertices[j];
 
-                                rotateZ(p, rotation);
-                            }
+                            rotateZ(p, rotation);
+                          }
                         }
 
 
                         render(objects, ctx, dx, dy);
                         rotation = 0;
-                    }
+                      }
 
-                    if(37 in keysDown){ 
+                      if(37 in keysDown){ 
                         rotation -= Math.PI/90;
                         for (var i = 0; i < objects.length; ++i)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {
-                                var p = objects[i].vertices[j];
+                          for (var j = 0; j < objects[i].vertices.length; ++j)
+                          {
+                            var p = objects[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                            rotateZ(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {
-                                var p = Triangles[i].vertices[j];
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {
+                            var p = Triangles[i].vertices[j];
 
-                                rotateZ(p, rotation);
+                            rotateZ(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
-                                var p = Particles[i].vertices[j];
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
+                            var p = Particles[i].vertices[j];
 
-                                rotateZ(p, rotation);
-                            }
+                            rotateZ(p, rotation);
+                          }
                         }
 
 
                         render(objects, ctx, dx, dy);
 
                         rotation = 0;
-                    }
+                      }
 
 
-                    if(38 in keysDown){ 
+                      if(38 in keysDown){ 
                         rotation -= Math.PI/90;
                         for (var i = 0; i < objects.length; ++i)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {
-                                var p = objects[i].vertices[j];
+                          for (var j = 0; j < objects[i].vertices.length; ++j)
+                          {
+                            var p = objects[i].vertices[j];
 
-                                rotateX(p, rotation);
+                            rotateX(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {
-                                var p = Triangles[i].vertices[j];
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {
+                            var p = Triangles[i].vertices[j];
 
-                                rotateX(p, rotation);
+                            rotateX(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
-                                var p = Particles[i].vertices[j];
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
+                            var p = Particles[i].vertices[j];
 
-                                rotateX(p, rotation);
-                            }
+                            rotateX(p, rotation);
+                          }
                         }
                         render(objects, ctx, dx, dy);
                         rotation = 0;
-                    }
+                      }
 
-                    if(40 in keysDown){ 
+                      if(40 in keysDown){ 
                         rotation += Math.PI/90;
                         for (var i = 0; i < objects.length; ++i)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {
-                                var p = objects[i].vertices[j];
+                          for (var j = 0; j < objects[i].vertices.length; ++j)
+                          {
+                            var p = objects[i].vertices[j];
 
-                                rotateX(p, rotation);
+                            rotateX(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Triangles.length; ++i)
                         {
-                            for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                            {
-                                var p = Triangles[i].vertices[j];
+                          for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                          {
+                            var p = Triangles[i].vertices[j];
 
-                                rotateX(p, rotation);
+                            rotateX(p, rotation);
 
-                            }
+                          }
                         }
 
                         for (var i = 0; i < Particles.length; ++i)
                         {
-                            for (var j = 0; j < Particles[i].vertices.length; ++j)
-                            {   
-                                var p = Particles[i].vertices[j];
+                          for (var j = 0; j < Particles[i].vertices.length; ++j)
+                          {   
+                            var p = Particles[i].vertices[j];
 
-                                rotateX(p, rotation);
-                            }
+                            rotateX(p, rotation);
+                          }
                         }
 
                         render(objects, ctx, dx, dy);
 
                         rotation = 0;
-                    }
+                      }
 
-                    if(32 in keysDown){ 
+                      if(32 in keysDown){ 
 
                         if(faces == true)
                         {
                          faces = false; 
 
-                     }
-                     else{
+                       }
+                       else{
                         faces = true; 
+                      }
+
+
                     }
 
+                  }
 
-                }
-
-            }
-
-            function displaywheel(e){
+                  function displaywheel(e){
                         var evt=window.event || e //equalize event object
                         var delta=evt.detail? evt.detail*(-120) : evt.wheelDelta //check for detail first so Opera uses that instead of wheelDelta
 
 
                         if(delta == 120)
                         {
-                            for (var i = 0; i < objects.length; ++i) 
+                          for (var i = 0; i < objects.length; ++i) 
+                          {
+                            for (var j = 0; j < objects[i].vertices.length; ++j) 
                             {
-                                for (var j = 0; j < objects[i].vertices.length; ++j) 
-                                {
-                                    objects[i].vertices[j].z -= speed;
-                                }
+                              objects[i].vertices[j].z -= speed;
                             }
+                          }
                             //cube_center.z -= speed;
                             render(objects, ctx, dx, dy);
-                        }
-                        else
-                        {
+                          }
+                          else
+                          {
                             {
-                                for (var i = 0; i < objects.length; ++i) 
+                              for (var i = 0; i < objects.length; ++i) 
+                              {
+                                for (var j = 0; j < objects[i].vertices.length; ++j) 
                                 {
-                                    for (var j = 0; j < objects[i].vertices.length; ++j) 
-                                    {
-                                        objects[i].vertices[j].z += speed;
-                                    }
+                                  objects[i].vertices[j].z += speed;
                                 }
+                              }
                                 //cube_center.z += speed;
                                 render(objects, ctx, dx, dy);
+                              }
                             }
-                        }
-                    }
-                    
+                          }
+
 
                     var mousewheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel" //FF doesn't recognize mousewheel as of FF3.x
 
                     if (document.attachEvent) //if IE (and Opera depending on user setting)
-                        document.attachEvent("on"+mousewheelevt, displaywheel)
+                      document.attachEvent("on"+mousewheelevt, displaywheel)
                     else if (document.addEventListener) //WC3 browsers
-                        document.addEventListener(mousewheelevt, displaywheel, false)
+                      document.addEventListener(mousewheelevt, displaywheel, false)
 
 
 
                     function stopMove() {
-                        mousedown = false;
-                        autorotate_timeout = setTimeout(autorotate, 2000);
+                      mousedown = false;
+                      autorotate_timeout = setTimeout(autorotate, 2000);
                     }
 
                     var rot = 0;
                     function autorotate() {
-                        for (var i = 0; i < objects.length; ++i)
+                      for (var i = 0; i < objects.length; ++i)
+                      {
+                        for (var j = 0; j < objects[i].vertices.length; ++j)
                         {
-                            for (var j = 0; j < objects[i].vertices.length; ++j)
-                            {
                             //rotate(objects[i].vertices[j], cube_center, -Math.PI / 720, Math.PI / 720);
 
                             //var p = objects[i]    .vertices[j];
@@ -1104,51 +1126,51 @@
                                     //}
 
                             //}
+                          }
                         }
-                    }
 
                     //rotation += Math.PI/90;
                     rot += Math.PI/90;
                     for (var i = 0; i < Triangles.length; ++i)
                     {
-                        for (var j = 0; j < Triangles[i].vertices.length; ++j)
-                        {   
-                            if(Triangles[i].vertices[j].y > 90  &&  Triangles[i].vertices[j].y < 100000)
-                            {
-                                var ran1 = getRndInteger(1,20);
-                                if(ran1 == 1)
-                                {
-                                    Triangles[i].vertices[j].x -= 0.3;
-                                }
-                                if(ran1 == 2)
-                                {
-                                    Triangles[i].vertices[j].y -= 0.3;
-                                }
-                                if(ran1 == 3)
-                                {
-                                    Triangles[i].vertices[j].z -= 0.3;
-                                }
-                                if(ran1 == 4)
-                                {
-                                    Triangles[i].vertices[j].x += 0.3;
-                                }
-                                if(ran1 == 5)
-                                {
-                                    Triangles[i].vertices[j].y += 0.3;
-                                }
-                                if(ran1 == 6)
-                                {
-                                    Triangles[i].vertices[j].z += 0.3;
-                                }
+                      for (var j = 0; j < Triangles[i].vertices.length; ++j)
+                      {   
+                        if(Triangles[i].vertices[j].y > 90  &&  Triangles[i].vertices[j].y < 100000)
+                        {
+                          var ran1 = getRndInteger(1,20);
+                          if(ran1 == 1)
+                          {
+                            Triangles[i].vertices[j].x -= 0.3;
+                          }
+                          if(ran1 == 2)
+                          {
+                            Triangles[i].vertices[j].y -= 0.3;
+                          }
+                          if(ran1 == 3)
+                          {
+                            Triangles[i].vertices[j].z -= 0.3;
+                          }
+                          if(ran1 == 4)
+                          {
+                            Triangles[i].vertices[j].x += 0.3;
+                          }
+                          if(ran1 == 5)
+                          {
+                            Triangles[i].vertices[j].y += 0.3;
+                          }
+                          if(ran1 == 6)
+                          {
+                            Triangles[i].vertices[j].z += 0.3;
+                          }
 
 
-                                if(Triangles[i].vertices[j].z > - 100)
-                                {
+                          if(Triangles[i].vertices[j].z > - 100)
+                          {
                                // Particles[i].vertices[j].z -= 5;
+                             }
                            }
+                         }
                        }
-                   }
-               }
 
                     //cube_center.x -= speed;
                     render(objects, ctx, dx, dy);
@@ -1156,15 +1178,15 @@
                     render(objects, ctx, dx, dy);
 
                     autorotate_timeout = setTimeout(autorotate, 1);
-                }
-                autorotate_timeout = setTimeout(autorotate, 0);
-                setImage();
-            })();
+                  }
+                  autorotate_timeout = setTimeout(autorotate, 0);
+                  setImage();
+                })();
 
 
 
 
-            </script>
+                </script>
 
-        </body>
-        </html>
+              </body>
+              </html>
