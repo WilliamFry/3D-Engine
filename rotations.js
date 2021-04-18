@@ -32,18 +32,18 @@ function rotate(M, center, theta, phi) {
   var rotation = 0;
 
 // Rotate a vertice
-//function rotateX(point, radians) {
-//  var y = point.y;
-//  point.y = (y * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
-//  point.z = (y * Math.sin(radians)) + (point.z * Math.cos(radians));
-//}
-//
-//// Utility method to rotate point by Y in a 3D space
-//function rotateY(point, radians) {
-//  var x = point.x;
-//  point.x = (x * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
-//  point.z = (x * Math.sin(radians)) + (point.z * Math.cos(radians));
-//}
+function rotateX(point, radians) {
+  var y = point.y;
+  point.y = (y * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
+  point.z = (y * Math.sin(radians)) + (point.z * Math.cos(radians));
+}
+
+// Utility method to rotate point by Y in a 3D space
+function rotateY(point, radians) {
+  var x = point.x;
+  point.x = (x * Math.cos(radians)) + (point.z * Math.sin(radians) * -1.0);
+  point.z = (x * Math.sin(radians)) + (point.z * Math.cos(radians));
+}
 
 // Utility method to rotate point by Z in a 3D space
 function rotateZ(point, radians) {

@@ -140,7 +140,7 @@
 
 
     if(39 in keysDown){ 
-      rotation += Math.PI/90;
+      rotation += 0.030;
       for (var i = 0; i < objects.length; ++i)
       {
         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -179,7 +179,7 @@
     }
 
     if(37 in keysDown){ 
-      rotation -= Math.PI/90;
+      rotation -= 0.3000;
       for (var i = 0; i < objects.length; ++i)
       {
         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -220,7 +220,7 @@
 
 
     if(38 in keysDown){ 
-      rotation -= Math.PI/90;
+      rotation -= 0.3000;
       for (var i = 0; i < objects.length; ++i)
       {
         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -257,7 +257,7 @@
     }
 
     if(40 in keysDown){ 
-      rotation += Math.PI/90;
+      rotation += 0.030;
       for (var i = 0; i < objects.length; ++i)
       {
         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -452,7 +452,7 @@
 
 
                     if(39 in keysDown){ 
-                      rotation += Math.PI/90;
+                      rotation += 0.030;
                       for (var i = 0; i < objects.length; ++i)
                       {
                         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -491,7 +491,7 @@
                     }
 
                     if(37 in keysDown){ 
-                      rotation -= Math.PI/90;
+                      rotation -= 0.030;
                       for (var i = 0; i < objects.length; ++i)
                       {
                         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -532,7 +532,7 @@
 
 
                     if(38 in keysDown){ 
-                      rotation -= Math.PI/90;
+                      rotation -= 0.030;
                       for (var i = 0; i < objects.length; ++i)
                       {
                         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -569,7 +569,7 @@
                     }
 
                     if(40 in keysDown){ 
-                      rotation += Math.PI/90;
+                      rotation += 0.030;
                       for (var i = 0; i < objects.length; ++i)
                       {
                         for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -657,7 +657,7 @@
 
                       if(mxnew > mx)
                       {
-                        rotation -= Math.PI/90;
+                        rotation -= 0.030;
                         for (var i = 0; i < objects.length; ++i)
                         {
                           for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -706,7 +706,7 @@
 
                           if(mxnew < mx)
                           {
-                            rotation += Math.PI/90;
+                            rotation += 0.030;
                             for (var i = 0; i < objects.length; ++i)
                             {
                               for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -739,7 +739,7 @@
 
                           if(mynew < my)
                           {
-                            rotation += Math.PI/90;
+                            rotation += 0.030;
                             for (var i = 0; i < objects.length; ++i)
                             {
                               for (var j = 0; j < objects[i].vertices.length; ++j)
@@ -769,7 +769,7 @@
 
                           if(mynew > my)
                           {
-                            rotation -= Math.PI/90;
+                            rotation -= 0.030;
                             for (var i = 0; i < objects.length; ++i)
                             {
                               for (var j = 0; j < objects[i].vertices.length; ++j)
